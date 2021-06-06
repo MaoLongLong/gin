@@ -7,7 +7,12 @@ import (
 )
 
 func main() {
-	r := gin.New()
+	r := gin.Default()
+
+	r.GET("/panic", func(c *gin.Context) {
+		names := []string{"geektutu"}
+		c.String(http.StatusOK, names[100])
+	})
 
 	r.GET("/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
